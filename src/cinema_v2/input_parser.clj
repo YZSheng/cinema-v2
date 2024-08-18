@@ -6,15 +6,18 @@
 (def ^:private movie-input-col-error-message "Column must be between 1 and 50 inclusive")
 
 (defn ^:private is-row-valid [row]
-  (and row (< 0 row 27)))
+  (< 0 row 27))
 
 (defn ^:private is-column-valid [col]
-  (and col (< 0 col 51)))
+  (< 0 col 51))
+
+(defn match-movie-input [input]
+  (re-matches #"^(.*)\s+(\d+)\s+(\d+)$" input))
 
 (defn parse-movie [input]
-  (let [[name row col :as parts] (string/split input #"\s")]
+  (let [[_ name row col :as parts] (match-movie-input input)]
     (cond
-      (< (count parts) 3)
+      (< (count parts) 4)
       [nil movie-input-format-error-message]
 
       (not (is-row-valid (parse-long row)))
