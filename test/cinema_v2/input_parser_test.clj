@@ -7,6 +7,8 @@
     (is (= [["Inception" 10 10] nil] (sut/parse-movie "Inception 10 10"))))
   (testing "multi word movie with valid row and columns"
     (is (= [["Good morning, Vietnam!" 10 10] nil] (sut/parse-movie "Good morning, Vietnam! 10 10"))))
+  (testing "Invalid input with ingering input after row and column"
+    (is (= [nil "Invalid input. Please enter movie input in this format: [Movie name] [row] [column]"] (sut/parse-movie "Good morning, Vietnam! 10 10 abc"))))
   (testing "single word movie with invalid 0 row and columns"
     (is (= [nil "Row must be between 1 and 26 inclusive"] (sut/parse-movie "Inception 0 10"))))
   (testing "single word movie with invalid 27 row and columns"
