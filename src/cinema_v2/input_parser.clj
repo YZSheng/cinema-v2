@@ -1,5 +1,4 @@
-(ns cinema-v2.input-parser
-  (:require [clojure.string :as string]))
+(ns cinema-v2.input-parser)
 
 (def ^:private movie-input-format-error-message "Invalid input. Please enter movie input in this format: [Movie name] [row] [column]")
 (def ^:private movie-input-row-error-message "Row must be between 1 and 26 inclusive")
